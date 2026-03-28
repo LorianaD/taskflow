@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
 
 function authMiddleware(req, res, next) {
-    const header = req.header.authorization;
+    const header = req.headers.authorization;
     if (!header) {
         return res.status(401).json({
             succes: false,
             error: "Token maquant"
         });
     }
-    const token = header.split("") [1];
+    const token = header.split(" ") [1];
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
