@@ -8,8 +8,8 @@ import authMiddleware from "../middlewares/auth.middleware.js";
 const router = Router();
 
 router.post("/", authMiddleware, createTask);
-router.get("/", getAllTasks);
-router.put("/", updateTask);
-router.delete("/", deleteTask);
+router.get("/", authMiddleware, getAllTasks);
+router.put("/", authMiddleware, updateTask);
+router.delete("/", authMiddleware, deleteTask);
 
 export default router;
